@@ -25,10 +25,16 @@
 
     <parent>
         <artifactId>netty-spring</artifactId>
-        <groupId>io.github.yaaaaaaassica</groupId>
+        <groupId>io.github.spafka</groupId>
         <version>0.1</version>
     </parent>
     <artifactId>springboot-starter-netty</artifactId>
+
+
+
+
+
+
 
 
     <properties>
@@ -113,6 +119,8 @@
             </plugin>
         </plugins>
     </build>
+
+
 
 
 </project>
