@@ -11,7 +11,7 @@ public class ChannelContextParser implements MessageParser<ChannelHandlerContext
     }
 
     @Override
-    public ChannelHandlerContext parse(ChannelHandlerContext ctx) throws Exception {
+    public ChannelHandlerContext parse(ChannelHandlerContext ctx){
         return ctx;
     }
 }

@@ -22,6 +22,7 @@ import io.github.yaaaaaaassica.iocnetty.annotation.NettyController;
 import io.github.yaaaaaaassica.iocnetty.annotation.NettyMapping;
 import io.github.yaaaaaaassica.iocnetty.annotation.NettyResponseBody;
 import io.github.yaaaaaaassica.iocnetty.annotation.ParserRegister;
+import io.github.yaaaaaaassica.iocnetty.parsers.ChannelContextParser;
 import io.github.yaaaaaaassica.iocnetty.parsers.MessageParser;
 import io.github.yaaaaaaassica.iocnetty.util.SpringProxyUtils;
 import io.netty.buffer.ByteBuf;
@@ -41,11 +42,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 
 @Component
@@ -63,11 +69,17 @@ public class NettyCommandHandler extends ChannelDuplexHandler implements Initial
 
         NettyMessage nettyMessage = (NettyMessage) msg;
 
-        dispatch(ctx, nettyMessage.getMessageId(), nettyMessage.getBuf());
+        try {
+            dispatch(ctx, nettyMessage.getMessageId(), nettyMessage.getBuf());
+        }catch (Throwable e){
+            log.error("swall a error {}",e);
+            throw  e;
+        }
+
 
     }
 
-    public void dispatch(ChannelHandlerContext ctx, int messageId, ByteBuf messageBytes) throws Exception {
+    private void dispatch(ChannelHandlerContext ctx, int messageId, Object messageBytes) throws Exception {
 
         HandlerMethod handlerMethod = methodMappings.get(messageId + "");
 
@@ -75,11 +87,25 @@ public class NettyCommandHandler extends ChannelDuplexHandler implements Initial
             log.warn("ignore unknow message{}", messageId);
         }
 
-        List paramters = getParameters(ctx, messageBytes, handlerMethod.parsers);
-
         // 调用方法
         Method method = handlerMethod.method;
-        Object result = method.invoke(handlerMethod.bean, paramters.toArray());
+
+        Parameter[] parameters = method.getParameters();
+
+        Object[] params = Arrays.
+                stream(parameters)
+                .map(x -> parsers.get(x.getParameterizedType()))
+                .map(x -> {
+                    if (x.equals(ChannelContextParser.class)) {
+                        return x.parse(ctx);
+                    } else {
+                        return x.parse(messageBytes);
+                    }
+                })
+                .toArray();
+
+
+        Object result = method.invoke(handlerMethod.bean, params);
 
 
         if (method.isAnnotationPresent(NettyResponseBody.class) && method.getReturnType() != null) {
@@ -93,15 +119,16 @@ public class NettyCommandHandler extends ChannelDuplexHandler implements Initial
                         MessageParser messageParser = parsers.get(bodyClass);
                         Object parse = messageParser.parse(result);
 
-                        if (ctx.channel().isWritable()){
+                        if (ctx.channel().isWritable()) {
                             ctx.writeAndFlush(parse);
-                        }else {
-
+                        } else {
                             log.error("channel is not writable");
+                            throw new RuntimeException("channel is not writable");
                         }
 
                     } catch (Exception e) {
                         log.error("{}", ExceptionUtils.getStackTrace(e));
+                        throw e;
                     }
                 }
             }
@@ -137,7 +164,7 @@ public class NettyCommandHandler extends ChannelDuplexHandler implements Initial
      * @param messageParsers
      * @return
      */
-    private List getParameters(ChannelHandlerContext ctx, ByteBuf messageBytes, List<MessageParser> messageParsers) throws Exception {
+    private List getParameters(ByteBuf messageBytes, List<MessageParser> messageParsers) throws Exception {
         List paramters = new ArrayList();
 
         for (MessageParser messageParser : messageParsers) {

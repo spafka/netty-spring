@@ -45,16 +45,17 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+    <description>netty dispatch</description>
 
     <scm>
-        <connection>scm:git:https://github.com/spafka/utils</connection>
-        <developerConnection>scm:git:https://github.com/spafka/utils</developerConnection>
-        <url>git@https://github.com/spafka/utils</url>
-        <tag>1.0.6</tag>
+        <connection>scm:git:https://github.com/spafka/netty-spring</connection>
+        <developerConnection>scm:git:https://github.com/spafka/netty-spring</developerConnection>
+        <url>git@https://github.com/spafka/netty-spring</url>
+        <tag>0.1</tag>
     </scm>
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/spafka/utils/issues</url>
+        <url>https://github.com/spafka/netty-spring/issues</url>
     </issueManagement>
 
 

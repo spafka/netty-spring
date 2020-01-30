@@ -22,6 +22,7 @@ import com.google.protobuf.GeneratedMessageV3;
 import com.google.protobuf.Parser;
 import io.github.yaaaaaaassica.iocnetty.annotation.ParserRegister;
 import io.netty.channel.ChannelHandlerContext;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
@@ -47,8 +48,9 @@ public class ProtobufParser implements MessageParser<byte[], GeneratedMessageV3>
         }
     }
 
+    @SneakyThrows
     @Override
-    public GeneratedMessageV3 parse( byte[] bytes) throws Exception {
+    public GeneratedMessageV3 parse( byte[] bytes){
         return (GeneratedMessageV3) parser.parseFrom(bytes);
     }
 }

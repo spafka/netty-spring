@@ -28,6 +28,5 @@ import lombok.Data;
 public class NettyMessage {
 
     private int messageId;
-    private byte[] messageBytes;
-    private ByteBuf buf;
+    private Object buf;
 }

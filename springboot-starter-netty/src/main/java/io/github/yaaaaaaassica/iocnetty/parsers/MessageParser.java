@@ -18,12 +18,14 @@
 
 package io.github.yaaaaaaassica.iocnetty.parsers;
 
-import io.netty.channel.ChannelHandlerContext;
 
+import javax.annotation.concurrent.GuardedBy;
+import javax.annotation.concurrent.NotThreadSafe;
 
+@NotThreadSafe
 public interface MessageParser<T, U> {
 
     void setParser(Class v);
 
-    U parse(T t) throws Exception;
+    U parse(T t);
 }
