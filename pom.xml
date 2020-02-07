@@ -24,7 +24,7 @@
 
     <artifactId>netty-spring</artifactId>
     <groupId>io.github.spafka</groupId>
-    <version>0.1</version>
+    <version>0.2</version>
     <packaging>pom</packaging>
 
     <name>netty in  spring</name>
@@ -55,7 +55,7 @@
         <connection>scm:git:https://github.com/spafka/netty-spring</connection>
         <developerConnection>scm:git:https://github.com/spafka/netty-spring</developerConnection>
         <url>git@https://github.com/spafka/netty-spring</url>
-        <tag>0.1</tag>
+        <tag>0.2</tag>
     </scm>
     <issueManagement>
         <system>GitHub Issues</system>
