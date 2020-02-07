@@ -16,11 +16,10 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.springboot;
+package io.github.spafka.springnetty.springboot;
 
-import com.alibaba.fastjson.JSON;
-import io.github.yaaaaaaassica.iocnetty.annotation.NettyScan;
-import io.github.yaaaaaaassica.iocnetty.annotation.ParserRegister;
+import io.github.spafka.springnetty.annotation.NettyScan;
+import io.github.spafka.springnetty.annotation.ParserRegister;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -68,7 +67,7 @@ public class CommandScannerRegistrar implements ResourceLoaderAware, ImportBeanD
         //这里实现的是根据名称来注入
         commandClassPathScanner.setBeanNameGenerator(new CommandNameGenerator());
 
-        log.info("commandClassPathScanner 扫描路径:{}", JSON.toJSONString(scanPackages, true));
+        log.info("commandClassPathScanner 扫描路径:{}",Arrays.toString(scanPackages));
 
         //扫描指定路径下的接口
         Set<BeanDefinitionHolder> beanDefinitionHolders = commandClassPathScanner.doScan(scanPackages);

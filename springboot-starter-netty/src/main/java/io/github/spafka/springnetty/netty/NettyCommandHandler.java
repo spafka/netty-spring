@@ -16,15 +16,15 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.netty;
+package io.github.spafka.springnetty.netty;
 
-import io.github.yaaaaaaassica.iocnetty.annotation.NettyController;
-import io.github.yaaaaaaassica.iocnetty.annotation.NettyMapping;
-import io.github.yaaaaaaassica.iocnetty.annotation.NettyResponseBody;
-import io.github.yaaaaaaassica.iocnetty.annotation.ParserRegister;
-import io.github.yaaaaaaassica.iocnetty.parsers.ChannelContextParser;
-import io.github.yaaaaaaassica.iocnetty.parsers.MessageParser;
-import io.github.yaaaaaaassica.iocnetty.util.SpringProxyUtils;
+import io.github.spafka.springnetty.annotation.NettyController;
+import io.github.spafka.springnetty.annotation.NettyMapping;
+import io.github.spafka.springnetty.annotation.NettyResponseBody;
+import io.github.spafka.springnetty.annotation.ParserRegister;
+import io.github.spafka.springnetty.parsers.ChannelContextParser;
+import io.github.spafka.springnetty.parsers.MessageParser;
+import io.github.spafka.springnetty.util.SpringProxyUtils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandler;
@@ -49,9 +49,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 
 @Component
@@ -85,6 +82,7 @@ public class NettyCommandHandler extends ChannelDuplexHandler implements Initial
 
         if (handlerMethod == null) {
             log.warn("ignore unknow message{}", messageId);
+            throw new RuntimeException(String.format("unknow message %s",messageId));
         }
 
         // 调用方法

@@ -1,6 +1,6 @@
-package io.github.yaaaaaaassica.iocnetty.parsers;
+package io.github.spafka.springnetty.parsers;
 
-import io.github.yaaaaaaassica.iocnetty.annotation.ParserRegister;
+import io.github.spafka.springnetty.annotation.ParserRegister;
 import io.netty.channel.ChannelHandlerContext;
 
 @ParserRegister(messageType = ChannelHandlerContext.class)

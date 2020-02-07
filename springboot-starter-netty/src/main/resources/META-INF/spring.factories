@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.yaaaaaaassica.iocnetty.springboot.SpringBootNettyConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.spafka.springnetty.springboot.SpringBootNettyConfiguration

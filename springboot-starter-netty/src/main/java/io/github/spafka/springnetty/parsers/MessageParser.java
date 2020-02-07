@@ -16,16 +16,16 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.annotation;
-
-import java.lang.annotation.*;
+package io.github.spafka.springnetty.parsers;
 
 
-@Target({ElementType.TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@Inherited
-@Documented
-public @interface ParserRegister {
+import javax.annotation.concurrent.GuardedBy;
+import javax.annotation.concurrent.NotThreadSafe;
 
-    Class messageType();
+@NotThreadSafe
+public interface MessageParser<T, U> {
+
+    void setParser(Class v);
+
+    U parse(T t);
 }

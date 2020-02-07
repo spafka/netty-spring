@@ -16,7 +16,7 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.netty;
+package io.github.spafka.springnetty.netty;
 
 import io.netty.buffer.ByteBuf;
 import lombok.Builder;

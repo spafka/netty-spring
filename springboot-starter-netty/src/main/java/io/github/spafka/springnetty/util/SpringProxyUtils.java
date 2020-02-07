@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package io.github.yaaaaaaassica.iocnetty.util;
+package io.github.spafka.springnetty.util;
 
 import org.springframework.aop.TargetSource;
 import org.springframework.aop.framework.AdvisedSupport;

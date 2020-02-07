@@ -16,12 +16,14 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.netty;
+package io.github.spafka.springnetty.annotation;
 
-public interface NettyServer {
+import java.lang.annotation.*;
 
-
-    void start();
-
-    void stop();
+@Documented
+@Inherited
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
+public @interface NettyResponseBody {
+    Class type() default String.class;
 }

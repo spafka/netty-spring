@@ -27,6 +27,10 @@
     <version>0.1</version>
     <packaging>pom</packaging>
 
+    <name>netty in  spring</name>
+    <description>A Framework that help develop tcp server with springframework!</description>
+    <url>https://github.com/spafka/netty-spring</url>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -45,7 +49,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-    <description>netty dispatch</description>
+
 
     <scm>
         <connection>scm:git:https://github.com/spafka/netty-spring</connection>

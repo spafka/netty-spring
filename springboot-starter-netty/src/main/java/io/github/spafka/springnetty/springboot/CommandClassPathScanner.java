@@ -16,11 +16,11 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.springboot;
+package io.github.spafka.springnetty.springboot;
 
-import io.github.yaaaaaaassica.iocnetty.annotation.NettyController;
-import io.github.yaaaaaaassica.iocnetty.annotation.NettyMapping;
-import io.github.yaaaaaaassica.iocnetty.annotation.ParserRegister;
+import io.github.spafka.springnetty.annotation.NettyController;
+import io.github.spafka.springnetty.annotation.NettyMapping;
+import io.github.spafka.springnetty.annotation.ParserRegister;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;

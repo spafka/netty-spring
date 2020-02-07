@@ -16,16 +16,12 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.parsers;
+package io.github.spafka.springnetty.netty;
+
+public interface NettyServer {
 
 
-import javax.annotation.concurrent.GuardedBy;
-import javax.annotation.concurrent.NotThreadSafe;
+    void start();
 
-@NotThreadSafe
-public interface MessageParser<T, U> {
-
-    void setParser(Class v);
-
-    U parse(T t);
+    void stop();
 }

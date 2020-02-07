@@ -16,17 +16,16 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.annotation;
+package io.github.spafka.springnetty.annotation;
 
 import java.lang.annotation.*;
 
 
-@Documented
-@Inherited
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD})
-public @interface NettyMapping {
+@Inherited
+@Documented
+public @interface ParserRegister {
 
-    long id();
-
+    Class messageType();
 }

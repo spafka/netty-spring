@@ -16,21 +16,17 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.annotation;
-
-
-import io.github.yaaaaaaassica.iocnetty.springboot.CommandScannerRegistrar;
-import org.springframework.context.annotation.Import;
+package io.github.spafka.springnetty.annotation;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.TYPE, ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@Inherited
-@Import(CommandScannerRegistrar.class)
-@Documented
-public @interface NettyScan {
 
-    String[] basePackage() default {};
+@Documented
+@Inherited
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
+public @interface NettyMapping {
+
+    long id();
 
 }

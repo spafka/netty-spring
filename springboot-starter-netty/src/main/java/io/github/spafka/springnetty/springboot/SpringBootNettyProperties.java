@@ -16,7 +16,7 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.springboot;
+package io.github.spafka.springnetty.springboot;
 
 import io.netty.channel.ChannelOption;
 import lombok.Data;

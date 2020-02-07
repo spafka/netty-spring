@@ -16,10 +16,10 @@
  *
  */
 
-package io.github.yaaaaaaassica.iocnetty.springboot;
+package io.github.spafka.springnetty.springboot;
 
-import io.github.yaaaaaaassica.iocnetty.netty.NettyCommandHandler;
-import io.github.yaaaaaaassica.iocnetty.netty.NettyServer;
+import io.github.spafka.springnetty.netty.NettyCommandHandler;
+import io.github.spafka.springnetty.netty.NettyServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelInitializer;
