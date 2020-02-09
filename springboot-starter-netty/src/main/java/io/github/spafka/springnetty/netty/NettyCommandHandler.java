@@ -29,6 +29,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.ReferenceCountUtil;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -67,7 +68,9 @@ public class NettyCommandHandler extends ChannelDuplexHandler implements Initial
         NettyMessage nettyMessage = (NettyMessage) msg;
 
         try {
-            dispatch(ctx, nettyMessage.getMessageId(), nettyMessage.getBuf());
+            Object buf = nettyMessage.getBuf();
+            dispatch(ctx, nettyMessage.getMessageId(), buf);
+            ReferenceCountUtil.release(buf);
         }catch (Throwable e){
             log.error("swall a error {}",e);
             throw  e;
